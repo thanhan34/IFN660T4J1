@@ -2,7 +2,7 @@
 
 digit [0-9]
 letter [a-zA-Z]
-InputCharacter (\\.|[^\\"])
+InputCharacter (\\.|[^\\"])//
 EscapeSequence [\\b\\t\\n\\f\\r\\"\\'\\]
 StringLiteral \"{InputCharacter}*|{EscapeSequence}*\"
 
