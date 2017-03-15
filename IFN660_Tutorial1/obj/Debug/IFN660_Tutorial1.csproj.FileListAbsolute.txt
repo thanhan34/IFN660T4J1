@@ -1,0 +1,6 @@
+C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\bin\Debug\IFN660_Tutorial1.exe.config
+C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\bin\Debug\IFN660_Tutorial1.exe
+C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\bin\Debug\IFN660_Tutorial1.pdb
+C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\obj\Debug\IFN660_Tutorial1.exe
+C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\obj\Debug\IFN660_Tutorial1.pdb
+C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\obj\Debug\IFN660_Tutorial1.csprojResolveAssemblyReference.cache
