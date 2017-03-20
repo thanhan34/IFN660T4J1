@@ -2,13 +2,11 @@
 
 %namespace DecimalLiteral
 
-zeroDigit [0]
-DecDigit [1-9][0-9_]
-Long	[L]
+DecimalNumeral      [0][1-9][0-9_]
+IntegerTypeSuffix   [lL]
 
 %%
 
-{zeroDigit}|{DecDigit}* 		{yylval.name=yytext; return (int)Tokens.DECIMAL;}			
-{zeroDigit}|({DecDigit}|{Long})*	{yylval.name=yytext; return (int)Tokens.DECIMAL;}
+{DecimalNumeral}|{IntegerTypeSuffix}*    {yylval.name=yytext; return (int)Tokens.DecimalIntegerLiteral;}
 
 %%
