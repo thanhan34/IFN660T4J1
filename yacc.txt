@@ -1,0 +1,88 @@
+/* Siliang Bai */
+
+MethodBody
+	: Block
+	| ';'
+	;
+	
+Block
+	: '{' BlockStatements_opt '}'
+	;
+	
+BlockStatements_opt
+	: BlockStatement BlockStatements
+	;
+	
+BlockStatements
+	: BlockStatement BlockStatements
+	: /* empty */
+	;
+	
+BlockStatement
+	: LocalVariableDeclarationStatement ClassDeclaration Statement
+	;
+	
+LocalVariableDeclarationStatement
+	: LocalVariableDeclaration ';'
+	;
+	
+LocalVariableDeclaration
+	: VariableModifiers UnannType VariableDeclarationList
+	;
+	
+VariableModifiers
+	: VariableModifier VariableModifiers
+	: /* empty */
+	;
+	
+VariableModifier
+	: Annotation
+	| final
+	;
+
+Annotation
+	: NormalAnnotation
+	| MarkerAnnotation
+	| SingleElementAnnotation
+	;
+
+NormalAnnotation
+	: /*fixme*/
+	;
+	
+MarkerAnnotation
+	: /*fixme*/
+	;
+	
+SingleElementAnnotation
+	: /*fixme*/
+	;
+	
+
+//ends here	
+
+	
+UnannType
+	: UnannPrimitiveType 
+	| UnannReferenceType
+	;
+	
+UnannPrimitiveType
+	: NumericType
+	| boolean
+	;
+	
+UnannReferenceType
+	: UnannClassOrInterfaceType 
+	| UnannTypeVariable
+	| UnannArrayType
+	;
+	
+UnannClassOrInterfaceType
+	: UnannClassType
+	| UnannInterfaceType
+	;
+	
+
+	
+	
