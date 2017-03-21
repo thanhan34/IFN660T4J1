@@ -5,6 +5,7 @@ letter [a-zA-Z]
 InputCharacter (\\.|[^\\"])
 EscapeSequence [\\b\\t\\n\\f\\r\\"\\'\\]
 StringLiteral \"{InputCharacter}*|{EscapeSequence}*\"
+ddhfjguthdgghnytrsrfhf
 
 %%
 
