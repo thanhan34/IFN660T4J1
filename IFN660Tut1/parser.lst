@@ -1,0 +1,69 @@
+
+// ==========================================================================
+//  GPPG error listing for yacc source file <parser.y - 20/03/2017 5:44:59 PM>
+// ==========================================================================
+//  Version:  1.5.2
+//  Machine:  DESKTOP-G5A1GT6
+//  DateTime: 20/03/2017 5:45:04 PM
+//  UserName: super
+// ==========================================================================
+
+
+%namespace GPLexTutorial
+
+%union
+{
+    public int num;
+    public string name;
+	public string FloatingPointLiteral;
+}
+
+%token <num> NUMBER
+%token <name> IDENT
+%token IF ELSE INT BOOL
+%toekn <FloatingPointLiteral> FloatingPointLiteral
+//^^^^^^-------------------^^
+// Error: Unknown %keyword in this context
+// Error: Bad separator character in list
+// Error: Bad separator character in list
+// ---------------------------------------
+
+%left '='
+%nonassoc '<'
+%left '+'
+
+%%
+
+Program : Statement
+        ;
+
+Statement : IF '(' Expression ')' Statement ELSE Statement
+          | '{' StatementList '}'
+          | Expression ';'
+          | Type IDENT ';'
+          ;
+
+Type : INT
+     | BOOL
+     ;
+
+StatementList : StatementList Statement
+              | /* empty */
+              ;
+
+Expression : NUMBER
+           | IDENT
+           | Expression '=' Expression
+           | Expression '+' Expression
+           | Expression '<' Expression
+           ;
+
+%%
+
+public Parser(Scanner scanner) : base(scanner)
+{
+}
+
+
+// ==========================================================================
+

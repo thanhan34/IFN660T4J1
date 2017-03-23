@@ -1,0 +1,13 @@
+C:\Users\super\Documents\Visual Studio 2015\Projects\IFN660Tut1\IFN660Tut1\bin\Debug\IFN660Tut1.exe.config
+C:\Users\super\Documents\Visual Studio 2015\Projects\IFN660Tut1\IFN660Tut1\bin\Debug\IFN660Tut1.exe
+C:\Users\super\Documents\Visual Studio 2015\Projects\IFN660Tut1\IFN660Tut1\bin\Debug\IFN660Tut1.pdb
+C:\Users\super\Documents\Visual Studio 2015\Projects\IFN660Tut1\IFN660Tut1\bin\Debug\QUT.ShiftReduceParser.dll
+C:\Users\super\Documents\Visual Studio 2015\Projects\IFN660Tut1\IFN660Tut1\obj\Debug\IFN660Tut1.exe
+C:\Users\super\Documents\Visual Studio 2015\Projects\IFN660Tut1\IFN660Tut1\obj\Debug\IFN660Tut1.pdb
+C:\Users\super\Documents\Visual Studio 2015\Projects\IFN660Tut1\IFN660Tut1\obj\Debug\IFN660Tut1.csprojResolveAssemblyReference.cache
+D:\sem1,2017\IFN660\IFN660Tut1\IFN660Tut1\bin\Debug\IFN660Tut1.exe.config
+D:\sem1,2017\IFN660\IFN660Tut1\IFN660Tut1\obj\Debug\IFN660Tut1.exe
+D:\sem1,2017\IFN660\IFN660Tut1\IFN660Tut1\obj\Debug\IFN660Tut1.pdb
+D:\sem1,2017\IFN660\IFN660Tut1\IFN660Tut1\bin\Debug\IFN660Tut1.exe
+D:\sem1,2017\IFN660\IFN660Tut1\IFN660Tut1\bin\Debug\IFN660Tut1.pdb
+D:\sem1,2017\IFN660\IFN660Tut1\IFN660Tut1\obj\Debug\IFN660Tut1.csprojResolveAssemblyReference.cache
