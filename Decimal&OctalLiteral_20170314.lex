@@ -1,5 +1,6 @@
 %
 
+/*Wai Wing Chan - Decimal & Octal Integer Literal definition*/
 DecimalNumeral      	[0]|[1-9][0-9_]
 OctalNumeral  		[0][0-7_]
 IntegerTypeSuffix   	[lL]
