@@ -1,0 +1,27 @@
+﻿%namespace GPLexTutorial
+
+%union
+{
+    
+
+	/* Charles Yang week3 */
+
+	public string keyword;
+
+	/* Charles */
+}
+
+
+
+/* Charles Yang week3*/
+
+%token <keyword>  ABSTRACT ASSERT BOOLEAN BREAK BYTE CASE CATCH CHAR CLASS CONST CONTINUE DEFAULT DO DOUBLE
+%token <keyword>  ENUM ELSE EXTENDS FINAL FINALLY FLOAT FOR  GOTO  IF INT IMPLEMENTS IMPORT INSTANCEOF  INTERFACE LONG
+%token <keyword>  NATIVE NEW PACKAGE PRIVATE PROTECTED PUBLIC RETURN SHORT STATIC STRICTFP SUPER SWITCH SYNCHRONIZED
+%token <keyword> THIS THROW THROWS TRANSIENT TRY VOID VOLATILE WHILE
+
+
+/* Charles Yang */
+
+
+
