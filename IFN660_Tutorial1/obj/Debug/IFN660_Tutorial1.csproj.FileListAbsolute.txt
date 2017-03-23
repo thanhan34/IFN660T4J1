@@ -3,4 +3,12 @@ C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_T
 C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\bin\Debug\IFN660_Tutorial1.pdb
 C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\obj\Debug\IFN660_Tutorial1.exe
 C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\obj\Debug\IFN660_Tutorial1.pdb
+C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\bin\Debug\QUT.ShiftReduceParser.dll
 C:\Users\shini_000\Desktop\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\obj\Debug\IFN660_Tutorial1.csprojResolveAssemblyReference.cache
+E:\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\bin\Debug\IFN660_Tutorial1.exe.config
+E:\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\obj\Debug\IFN660_Tutorial1.exe
+E:\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\obj\Debug\IFN660_Tutorial1.pdb
+E:\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\bin\Debug\IFN660_Tutorial1.exe
+E:\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\bin\Debug\IFN660_Tutorial1.pdb
+E:\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\bin\Debug\QUT.ShiftReduceParser.dll
+E:\Programming Language Theory\IFN660_Tutorial1\IFN660_Tutorial1\obj\Debug\IFN660_Tutorial1.csprojResolveAssemblyReference.cache

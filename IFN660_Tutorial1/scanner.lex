@@ -1,10 +1,10 @@
 %namespace GPLexTutorial
-
+%{
+int lines = 0;
+%}
 digit [0-9]
 letter [a-zA-Z]
-InputCharacter (\\.|[^\\"])
-EscapeSequence [\\b\\t\\n\\f\\r\\"\\'\\]
-StringLiteral \"{InputCharacter}*|{EscapeSequence}*\"
+
 
 %%
 
@@ -13,10 +13,10 @@ else                         { return (int)Tokens.ELSE; }
 int                          { return (int)Tokens.INT; }
 bool                         { return (int)Tokens.BOOL; }
 
-{StringLiteral}				 { yylval.name = yytext; return (int)Tokens.StringLiteral; }
+
 
 {digit}+                     { yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
-
+{letter}({letter}|{digit})*  { yylval.name=yytext; return (int)Tokens.IDENT; }
 "="                          { return '='; }
 "+"                          { return '+'; }
 "<"                          { return '<'; }
@@ -26,7 +26,9 @@ bool                         { return (int)Tokens.BOOL; }
 "}"                          { return '}'; }
 ";"                          { return ';'; }
 
-[ \r\n\t]                    /* skip whitespace */
+[\n]						 { lines++;    }
+[ \t\r]                      /* ignore other whitespace */
+
 
 .                            { 
                                  throw new Exception(
@@ -35,3 +37,8 @@ bool                         { return (int)Tokens.BOOL; }
                              }
 
 %%
+public override void yyerror( string format, params object[] args )
+{
+    System.Console.Error.WriteLine("Error: line {0}, {1}", lines,
+        String.Format(format, args));
+}

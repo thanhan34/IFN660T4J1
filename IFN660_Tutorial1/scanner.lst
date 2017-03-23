@@ -4,50 +4,104 @@
 // ==========================================================================
 //  Version:  1.2.2
 //  Machine:  HADES
-//  DateTime: 3/14/2017 9:07:32 PM
+//  DateTime: 3/20/2017 4:19:59 PM
 //  UserName: shini_000
 // ==========================================================================
 
 
 %namespace GPLexTutorial
-
+%{
+int lines = 0;
+%}
 digit [0-9]
 letter [a-zA-Z]
-InputCharacter (\\.|[^\\"])
-EscapeSequence [\\b\\t\\n\\f\\r\\"\\'\\]
-StringLiteral \"{InputCharacter}*?{EscapeSequence}\"
-//-------------------------------^^^^^^^^^^^^^^^^^^^
-// Error: Extra characters at end of regular expression
-// ----------------------------------------------------
-
 %%
-
 if                           { return (int)Tokens.IF; }
 else                         { return (int)Tokens.ELSE; }
 int                          { return (int)Tokens.INT; }
 bool                         { return (int)Tokens.BOOL; }
-
-{StringLiteral}	     { yylval.name = yytext; return (int)Tokens.StringLiteral; }
-
-{digit}+                     { yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
-
-"="                          { return '='; }
-"+"                          { return '+'; }
-"<"                          { return '<'; }
+{letter}({letter}|{digit})* { yylval.name = yytext; return (int)Tokens.IDENT; }
+{digit}+        { yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
+/*frank week2*/
+"\b"                         { yylval.esfcasl = "BackSpace"; return (int)Tokens.ESFCASL; }
+"\t"                         { yylval.esfcasl = "Horizontal tab"; return (int)Tokens.ESFCASL; }
+"\n"                         { yylval.esfcasl = "Line feed"; return (int)Tokens.ESFCASL; }
+//^^
+// Warning: This pattern always overrides "[\n]" 
+// ----------------------------------------------
+"\f"                         { yylval.esfcasl = "Form feed"; return (int)Tokens.ESFCASL; }
+"\r"                         { yylval.esfcasl = "Carriage return"; return (int)Tokens.ESFCASL; }
+"\""                         { yylval.esfcasl = "Double Quote"; return (int)Tokens.ESFCASL; }
+"\'"                         { return '\''; }
+"\\"                         { return '\\'; }
+""                             { yylval.nil = "nill"; return (int)Tokens.NIL; }
+/*separator*/
 "("                          { return '('; }
 ")"                          { return ')'; }
 "{"                          { return '{'; }
 "}"                          { return '}'; }
+"["                            { return '['; }
+"]"                          { return ']'; }
 ";"                          { return ';'; }
-
-[ \r\n\t]                    /* skip whitespace */
-
+","                          { return ','; }
+"."                          { return '.'; }
+"@"                          { return '@'; }
+"..."                      { yylval.separators = yytext; return (int)Tokens.SEPARATOR; }
+"::"                       { yylval.separators = yytext; return (int)Tokens.SEPARATOR; }
+/*operator*/
+"="                          { return '='; }
+">"                          { return '>'; }
+"<"                          { return '<'; }
+"!"                          { return '!'; }
+"~"                          { return '~'; }
+"?"                          { return '?'; }
+":"                          { return ':'; }
+"->"                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"=="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+">="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"<="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"!="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"&&"                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"||"                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"++"                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"--"                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"+"                          { return '+'; }
+"-"                          { return '-';}
+"*"                          { return '*'; }
+"/"                          { return '/'; }
+"&"                          { return '&'; }
+"|"                          { return '|'; }
+"^"                          { return '^'; }
+"%"                          { return '%'; }
+"<<"                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+">>"                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+">>>"                        { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"+="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"-="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"*="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"/="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"&="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"|="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"^="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"%="                         { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+"<<="                        { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+">>="                        { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+">>>="                       { yylval.operators = yytext; return (int)Tokens.OPERATOR; }
+/*frank week2*/
+[\n]        { lines++;    }
+//^^
+// Warning: This pattern always overridden by ""\n"" 
+// --------------------------------------------------
+[ \t\r]      /* ignore other whitespace */
 .                            { 
                                  throw new Exception(
                                      String.Format(
                                          "unexpected character '{0}'", yytext)); 
                              }
-
 %%
-// ==========================================================================
+public override void yyerror( string format, params object[] args )
+{
+    System.Console.Error.WriteLine("Error: line {0}, {1}", lines,
+        String.Format(format, args));
+}// ==========================================================================
 

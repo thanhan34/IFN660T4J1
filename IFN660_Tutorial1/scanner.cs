@@ -6,9 +6,9 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  HADES
-//  DateTime: 3/15/2017 1:18:24 PM
+//  DateTime: 3/23/2017 9:51:08 PM
 //  UserName: shini_000
-//  GPLEX input file <scanner.lex - 3/15/2017 1:17:14 PM>
+//  GPLEX input file <scanner.lex - 3/23/2017 9:51:00 PM>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: unicode, parser, minimize
@@ -21,7 +21,6 @@
 // Version 1.2.1 of 24-June-2013
 //
 //
-#define BACKUP
 #define PERSIST
 
 using System;
@@ -124,13 +123,14 @@ namespace GPLexTutorial
         
         enum Result {accept, noMatch, contextFound};
 
-        const int maxAccept = 22;
-        const int initial = 23;
+        const int maxAccept = 25;
+        const int initial = 26;
         const int eofNum = 0;
         const int goStart = -1;
         const int INITIAL = 0;
 
 #region user code
+int lines = 0;
 #endregion user code
 
         int state;
@@ -162,48 +162,49 @@ namespace GPLexTutorial
         }
     };
 
-    static int[] startState = new int[] {23, 0};
+    static int[] startState = new int[] {26, 0};
 
 #region CompressedCharacterMap
     //
-    // There are 24 equivalence classes
+    // There are 22 equivalence classes
     // There are 2 character sequence regions
     // There are 1 tables, 126 entries
     // There are 1 runs, 0 singletons
     // Decision tree depth is 1
     //
     static sbyte[] mapC0 = new sbyte[126] {
-/*     '\0' */ 12, 12, 12, 12, 12, 12, 12, 12, 12, 23, 0, 12, 12, 23, 12, 12, 
-/*   '\x10' */ 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 
-/*   '\x20' */ 23, 12, 10, 12, 12, 12, 12, 13, 18, 19, 12, 16, 12, 12, 12, 12, 
-/*      '0' */ 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 12, 22, 17, 15, 12, 12, 
-/*      '@' */ 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 
-/*      'P' */ 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 12, 12, 12, 
-/*      '`' */ 12, 12, 8, 12, 12, 3, 2, 12, 12, 1, 12, 12, 4, 12, 6, 9, 
-/*      'p' */ 12, 12, 13, 5, 7, 12, 12, 12, 12, 12, 12, 20, 12, 21 };
+/*     '\0' */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 20, 0, 0, 21, 0, 0, 
+/*   '\x10' */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+/*   '\x20' */ 21, 0, 0, 0, 0, 0, 0, 0, 15, 16, 0, 13, 0, 0, 0, 0, 
+/*      '0' */ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 19, 14, 12, 0, 0, 
+/*      '@' */ 0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 
+/*      'P' */ 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 0, 0, 0, 0, 0, 
+/*      '`' */ 0, 11, 8, 11, 11, 3, 2, 11, 11, 1, 11, 11, 4, 11, 6, 9, 
+/*      'p' */ 11, 11, 11, 5, 7, 11, 11, 11, 11, 11, 11, 17, 0, 18 };
 
     static sbyte MapC(int code)
     { // '\0' <= code <= '\U0010FFFF'
       if (code < 126) // '\0' <= code <= '}'
         return mapC0[code - 0];
       else // '~' <= code <= '\U0010FFFF'
-        return (sbyte)12;
+        return (sbyte)0;
     }
 #endregion
 
-    static Table[] NxS = new Table[31] {
+    static Table[] NxS = new Table[27] {
 /* NxS[   0] */ new Table(0, 0, 0, null),
 /* NxS[   1] */ new Table(0, 0, -1, null),
-/* NxS[   2] */ new Table(2, 5, -1, new sbyte[] {21, -1, -1, -1, 30}),
-/* NxS[   3] */ new Table(2, 12, -1, new sbyte[] {25, -1, -1, -1, 25, 25, 
-          25, -1, 18, 25, -1, 25}),
-/* NxS[   4] */ new Table(4, 1, -1, new sbyte[] {28}),
-/* NxS[   5] */ new Table(0, 0, -1, null),
-/* NxS[   6] */ new Table(2, 12, -1, new sbyte[] {25, -1, -1, -1, 25, 25, 
-          25, 26, 18, 25, -1, 25}),
-/* NxS[   7] */ new Table(2, 12, 17, new sbyte[] {7, 17, 17, 17, 7, 7, 
-          7, 17, 18, 24, 17, 7}),
-/* NxS[   8] */ new Table(14, 1, -1, new sbyte[] {8}),
+/* NxS[   2] */ new Table(1, 11, -1, new sbyte[] {3, 23, 3, 3, 3, 24, 
+          3, 3, 3, 3, 3}),
+/* NxS[   3] */ new Table(12, 11, 3, new sbyte[] {-1, -1, -1, -1, -1, -1, 
+          -1, -1, -1, -1, -1}),
+/* NxS[   4] */ new Table(1, 11, -1, new sbyte[] {3, 3, 3, 20, 3, 3, 
+          3, 3, 3, 3, 3}),
+/* NxS[   5] */ new Table(1, 11, -1, new sbyte[] {3, 3, 3, 3, 3, 3, 
+          3, 3, 17, 3, 3}),
+/* NxS[   6] */ new Table(10, 1, -1, new sbyte[] {6}),
+/* NxS[   7] */ new Table(0, 0, -1, null),
+/* NxS[   8] */ new Table(0, 0, -1, null),
 /* NxS[   9] */ new Table(0, 0, -1, null),
 /* NxS[  10] */ new Table(0, 0, -1, null),
 /* NxS[  11] */ new Table(0, 0, -1, null),
@@ -212,24 +213,26 @@ namespace GPLexTutorial
 /* NxS[  14] */ new Table(0, 0, -1, null),
 /* NxS[  15] */ new Table(0, 0, -1, null),
 /* NxS[  16] */ new Table(0, 0, -1, null),
-/* NxS[  17] */ new Table(10, 2, 17, new sbyte[] {-1, 24}),
-/* NxS[  18] */ new Table(2, 12, -1, new sbyte[] {25, -1, -1, -1, 25, 25, 
-          25, -1, 18, 25, -1, 25}),
-/* NxS[  19] */ new Table(0, 0, -1, null),
-/* NxS[  20] */ new Table(0, 0, -1, null),
-/* NxS[  21] */ new Table(0, 0, -1, null),
-/* NxS[  22] */ new Table(0, 0, -1, null),
-/* NxS[  23] */ new Table(6, 22, 5, new sbyte[] {3, 3, 6, 5, 7, 3, 
-          5, 3, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 1, 2, 3, 4}),
-/* NxS[  24] */ new Table(0, 14, 17, new sbyte[] {-1, 17, 7, 17, 17, 17, 
-          7, 7, 7, 17, 7, 7, 17, 7}),
-/* NxS[  25] */ new Table(2, 12, -1, new sbyte[] {25, -1, -1, -1, 25, 25, 
-          25, -1, 18, 25, -1, 25}),
-/* NxS[  26] */ new Table(9, 1, -1, new sbyte[] {27}),
-/* NxS[  27] */ new Table(4, 1, -1, new sbyte[] {19}),
-/* NxS[  28] */ new Table(5, 1, -1, new sbyte[] {29}),
-/* NxS[  29] */ new Table(3, 1, -1, new sbyte[] {20}),
-/* NxS[  30] */ new Table(7, 1, -1, new sbyte[] {22}),
+/* NxS[  17] */ new Table(1, 11, -1, new sbyte[] {3, 3, 3, 3, 3, 3, 
+          3, 3, 18, 3, 3}),
+/* NxS[  18] */ new Table(1, 11, -1, new sbyte[] {3, 3, 3, 19, 3, 3, 
+          3, 3, 3, 3, 3}),
+/* NxS[  19] */ new Table(12, 11, 3, new sbyte[] {-1, -1, -1, -1, -1, -1, 
+          -1, -1, -1, -1, -1}),
+/* NxS[  20] */ new Table(1, 11, -1, new sbyte[] {3, 3, 3, 3, 21, 3, 
+          3, 3, 3, 3, 3}),
+/* NxS[  21] */ new Table(1, 11, -1, new sbyte[] {3, 3, 22, 3, 3, 3, 
+          3, 3, 3, 3, 3}),
+/* NxS[  22] */ new Table(12, 11, 3, new sbyte[] {-1, -1, -1, -1, -1, -1, 
+          -1, -1, -1, -1, -1}),
+/* NxS[  23] */ new Table(12, 11, 3, new sbyte[] {-1, -1, -1, -1, -1, -1, 
+          -1, -1, -1, -1, -1}),
+/* NxS[  24] */ new Table(1, 11, -1, new sbyte[] {3, 3, 3, 3, 3, 3, 
+          25, 3, 3, 3, 3}),
+/* NxS[  25] */ new Table(12, 11, 3, new sbyte[] {-1, -1, -1, -1, -1, -1, 
+          -1, -1, -1, -1, -1}),
+/* NxS[  26] */ new Table(8, 18, 3, new sbyte[] {5, 3, 6, 3, 7, 8, 
+          9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4}),
     };
 
 int NextState() {
@@ -239,7 +242,7 @@ int NextState() {
         unchecked {
             int rslt;
             int idx = MapC(code) - NxS[state].min;
-            if (idx < 0) idx += 24;
+            if (idx < 0) idx += 22;
             if ((uint)idx >= (uint)NxS[state].rng) rslt = NxS[state].dflt;
             else rslt = NxS[state].nxt[idx];
             return rslt;
@@ -663,59 +666,64 @@ int NextState() {
                 return (int)Tokens.EOF;
             break;
         case 1:
-/* skip whitespace */
+throw new Exception(
+                                     String.Format(
+                                         "unexpected character '{0}'", yytext));
             break;
         case 2:
         case 3:
         case 4:
         case 5:
-        case 6:
-throw new Exception(
-                                     String.Format(
-                                         "unexpected character '{0}'", yytext));
-            break;
-        case 7:
         case 17:
         case 18:
-yylval.name = yytext; return (int)Tokens.StringLiteral;
+        case 20:
+        case 21:
+        case 24:
+yylval.name=yytext; return (int)Tokens.IDENT;
             break;
-        case 8:
+        case 6:
 yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER;
             break;
-        case 9:
+        case 7:
 return '=';
             break;
-        case 10:
+        case 8:
 return '+';
             break;
-        case 11:
+        case 9:
 return '<';
             break;
-        case 12:
+        case 10:
 return '(';
             break;
-        case 13:
+        case 11:
 return ')';
             break;
-        case 14:
+        case 12:
 return '{';
             break;
-        case 15:
+        case 13:
 return '}';
             break;
-        case 16:
+        case 14:
 return ';';
+            break;
+        case 15:
+lines++;
+            break;
+        case 16:
+/* ignore other whitespace */
             break;
         case 19:
 return (int)Tokens.BOOL;
             break;
-        case 20:
+        case 22:
 return (int)Tokens.ELSE;
             break;
-        case 21:
+        case 23:
 return (int)Tokens.IF;
             break;
-        case 22:
+        case 25:
 return (int)Tokens.INT;
             break;
         default:
@@ -775,6 +783,15 @@ return (int)Tokens.INT;
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal void ECHO() { Console.Out.Write(yytext); }
         
+#region UserCodeSection
+
+public override void yyerror( string format, params object[] args )
+{
+    System.Console.Error.WriteLine("Error: line {0}, {1}", lines,
+        String.Format(format, args));
+}
+
+#endregion
     } // end class $Scanner
 
 // ==============================================================
