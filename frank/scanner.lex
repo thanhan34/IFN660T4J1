@@ -1,5 +1,12 @@
+/* Jessica Wu week3 */
+HexNumeral  [0][xX]([0-9_]|[a-fA-F_])*
+IntegerTypeSuffix  [lL]
+/* Jessica Wu week3 */
 
 
+/* Jessica Wu week3 */
+{HexNumeral}{IntegerTypeSuffix}? { yylval.name = yytext; return (int)Tokens.HexIntegerLiteral; }
+/* Jessica Wu week3 */
 /*frank week2*/
 
 "\b"                         { yylval.esfcasl = "BackSpace"; return (int)Tokens.ESFCASL; }
