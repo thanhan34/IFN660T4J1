@@ -1,0 +1,13 @@
+%namespace GPLexTutorial
+
+InputCharacter (\\.|[^\\"])
+EscapeSequence [\\b\\t\\n\\f\\r\\"\\'\\]
+StringLiteral \"{InputCharacter}*|{EscapeSequence}*\"
+
+%%
+
+
+{StringLiteral}				 { yylval.name = yytext; return (int)Tokens.StringLiteral; }
+
+
+%%
