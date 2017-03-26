@@ -15,10 +15,12 @@ UnannClassType
 
 Identifier
 :/*fix me*/
+;
 
 UnannTypeVariable 
 :identifier /*fix me*/
-
+;
 
 Dims
+:
 ;
