@@ -1,10 +1,10 @@
 
 // ==========================================================================
-//  GPPG error listing for yacc source file <parser.y - 23/03/2017 8:37:53 PM>
+//  GPPG error listing for yacc source file <parser.y - 26/03/2017 6:15:14 PM>
 // ==========================================================================
 //  Version:  1.5.2
-//  Machine:  VDI-VL17-151
-//  DateTime: 23/03/2017 8:38:49 PM
+//  Machine:  VDI-VL17-114
+//  DateTime: 26/03/2017 6:15:15 PM
 //  UserName: n9548548
 // ==========================================================================
 
@@ -34,6 +34,10 @@
 //Jessica week3
 %token HexIntegerLiteral
 //Jessica week3
+
+//thanhan
+%token StringLiteral
+//thanhan
 
 //Wendy week3
 %token DecimalIntegerLiteral
@@ -69,44 +73,233 @@
 %left '+'
 
 %%
-// Error: NonTerminal symbol "BOOL" has no productions
-// Error: NonTerminal symbol "NUMBER" has no productions
-// Warning: Terminating NUMBER fixes the following size-1 NonTerminal set
-   // {NUMBER}
-// Error: There are 2 non-terminating NonTerminal Symbols
-   //  {BOOL, NUMBER}
-// Warning: Terminating BOOL fixes the following size-1 NonTerminal set
-   // {BOOL}
-// ----------------------------------------------------------------------
+// Error: NonTerminal symbol "STRING" has no productions
+// Warning: Terminating STRING fixes the following size-5 NonTerminal set
+   // {UnannReferenceType, UnannArrayType, UnClassOrInterfaceType, UnClassType, 
+   //     STRING}
+// Error: There are 5 non-terminating NonTerminal Symbols
+   //  {UnannReferenceType, UnannArrayType, UnClassOrInterfaceType, UnClassType, 
+   //     STRING}
+// ------------------------------------------------------------------------------
 
-Program : Statement
-        ;
+Program : ClassBody
+		;
 
-Statement : IF '(' Expression ')' Statement ELSE Statement
-          | '{' StatementList '}'
-          | Expression ';'
-          | Type IDENT ';'
+ClassBody : '{' ClassBodyDeclarations '}'		  
+		  ;
+
+ClassBodyDeclarations : ClassBodyDeclaration
+					  ;
+
+ClassBodyDeclaration : ClassMemberDeclaration
+					 ;
+
+ClassMemberDeclaration : MethodDeclaration
+					   ;
+
+MethodDeclaration : MethodModifier MethodHeader '{' MethodBody '}'
+				  ;
+
+MethodModifier : MethodModifier
+			   | MethodModifier MethodModifier 	
+			   | PUBLIC | STATIC
+				;
+
+MethodHeader : Result MethodDeclarator
+			 ;
+
+Result : VOID | INT 
+	   | 
+	   ;
+
+MethodDeclarator : Identifier '(' FormalParameterList ')' Dims
+				 ;
+
+FormalParameterList : LastFormalParameterList
+				    ;
+
+LastFormalParameterList : VariableModifier UnannType Annotation VariableDeclaratorId 
+						;
+
+Annotation:;
+
+Dims : '(' ')'
+	 | '[' ']'
+	 | '{' '}'
+	 |
+	 ;
+				 
+MethodBody :  Block 
+		   ;
+
+Block: Blockstatements
+	 ;
+
+Blockstatements : Blockstatement
+				;
+
+Blockstatement : LocalVariableDeclarationStatement Statement
+			   ;
+ 
+LocalVariableDeclarationStatement : LocalVariableDeclaration ';'
+								  ;       
+							  
+LocalVariableDeclaration : VariableModifier UnannType VariableDeclarationList
+						 ;
+
+VariableModifier : /* empty */
+				 ;
+
+UnannType : UnannPrimitiveType
+		  | UnannReferenceType
+		  ; 
+
+UnannPrimitiveType : NumericType
+             | BOOLEAN
+             ;
+
+UnannReferenceType : UnannArrayType
+				   ;
+
+UnannArrayType : UnClassOrInterfaceType Dims UnannTypeVariable Dims
+			   ;
+Dims:;
+UnClassOrInterfaceType : UnClassType
+					   ;
+
+UnClassType : STRING
+			;
+
+UnannTypeVariable : Identifier
+				  ;
+
+NumericType : IntegralType
+             | FloatingPointType
+             ;
+
+IntegralType
+            : BYTE
+            | SHORT
+            | INT
+            | LONG
+            | CHAR
+            ;
+
+FloatingPointType
+            : FLOAT
+			| DOUBLE
+            ;
+
+VariableDeclarationList : VariableDeclarator
+						;
+
+VariableDeclarator : VariableDeclaratorId 
+				   ;
+
+VariableDeclaratorId : Identifier | Dim_opt
+					 ;
+
+Identifier : IdentifierChars
+		   ;
+
+IdentifierChars : JavaLetter 
+			    | JavaLetterOrDigits 
+			    ;
+
+JavaLetter : IDENT
+		   ;
+
+JavaLetterOrDigits : ;
+
+Dim_opt : 
+		;
+
+
+//jeremy week4
+Statement : StatementWithoutTrailingSubstatement
           ;
 
-Type : INT
-     | BOOL
-     ;
+StatementWithoutTrailingSubstatement : ExpressionStatement
+                                     ;
 
-StatementList : StatementList Statement
-              | /* empty */
+ExpressionStatement : StatementExpression ';'
+                    ;
+
+StatementExpression : Assignment
+                    ;
+
+Assignment : LeftHandSide AssignmentOperator Expression
+           | /*empty*/
+           ;
+
+LeftHandSide : ExpressionName            
+             ;
+
+ExpressionName : IDENT
+               ;
+
+AssignmentOperator : '='
+                   ;
+
+Expression : AssignmentExpression
+           ;
+
+AssignmentExpression : ConditionalExpression
+                     ;
+
+ConditionalExpression : ConditionalOrExpression
+                      ;
+
+ConditionalOrExpression : ConditionalAndExpression
+                        ;
+
+ConditionalAndExpression : InclusiveOrExpression
+                         ;
+
+InclusiveOrExpression : ExclusiveOrExpression
+                      ;
+
+ExclusiveOrExpression : AndExpression
+                      ;
+
+AndExpression : EqualityExpression
               ;
 
-Expression : NUMBER
-           | IDENT
-		   | HexIntegerLiteral
-		   | DecimalIntegerLiteral
-		   | FloatingPointLiteral
-           | Expression '=' Expression
-           | Expression '+' Expression
-           | Expression '<' Expression
-		   | Expression '>' Expression
-		   | Expression OPERATOR Expression
-           ;
+EqualityExpression : RelationalExpression
+                   ;
+
+RelationalExpression : ShiftExpression
+                     ;
+
+ShiftExpression : AddictiveExpression
+                ;
+
+AddictiveExpression : MultiplicativeExpression
+                    ;
+
+MultiplicativeExpression : UnaryExpression
+                         ;
+
+UnaryExpression : UnaryExpressionNotPlusMinus
+                ;
+
+UnaryExpressionNotPlusMinus : PostfixExpression
+                            ;
+
+PostfixExpression : Primary
+                  ;
+
+Primary : PrimaryNoNewArray
+        ;
+
+PrimaryNoNewArray : Literal
+                  ;
+
+Literal : DecimalIntegerLiteral | HexIntegerLiteral
+        ;
+
+//jeremy week4
+
 
 %%
 

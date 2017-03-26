@@ -52,7 +52,7 @@
 //Charles week3
 %token <keyword>  ABSTRACT ASSERT BOOLEAN BREAK BYTE CASE CATCH CHAR CLASS CONST CONTINUE DEFAULT DO DOUBLE
 %token <keyword>  ENUM ELSE EXTENDS FINAL FINALLY FLOAT FOR  GOTO  IF INT IMPLEMENTS IMPORT INSTANCEOF  INTERFACE LONG
-%token <keyword>  NATIVE NEW PACKAGE PRIVATE PROTECTED PUBLIC RETURN SHORT STATIC STRICTFP SUPER SWITCH SYNCHRONIZED
+%token <keyword>  NATIVE NEW PACKAGE PRIVATE PROTECTED PUBLIC RETURN SHORT STATIC STRICTFP SUPER SWITCH SYNCHRONIZED STRING
 %token <keyword> THIS THROW THROWS TRANSIENT TRY VOID VOLATILE WHILE
 %token <comment>  COMMENT
 //Charles week3
@@ -63,36 +63,250 @@
 
 %%
 
-Program : Statement
-        ;
+Program : ComplitionUnit
+		;
 
-Statement : IF '(' Expression ')' Statement ELSE Statement
-          | '{' StatementList '}'
-          | Expression ';'
-          | Type IDENT ';'
+ComplitionUnit : PackageDeclaration_Opt ImportDeclaration TypeDeclaration
+			   ;
+
+PackageDeclaration_Opt :;
+
+ImportDeclaration :;
+
+TypeDeclaration : ClassDeclaration
+			    ;
+
+ClassDeclaration : NormalClassDeclaration
+				 ;
+
+NormalClassDeclaration : ClassModifier CLASS Identifier TypreParameters_Opt Super_Opt SuperInterfaces_Opt ClassBody
+					   ;
+
+ClassModifier : PUBLIC 
+			  ;
+
+TypreParameters_Opt :;
+
+Super_Opt :;
+
+SuperInterfaces_Opt :;
+
+
+ClassBody : '{' ClassBodyDeclarations '}'		  
+		  ;
+
+ClassBodyDeclarations : ClassBodyDeclaration
+					  ;
+
+ClassBodyDeclaration : ClassMemberDeclaration
+					 ;
+
+ClassMemberDeclaration : MethodDeclaration
+					   ;
+
+MethodDeclaration : MethodModifier MethodHeader '{' MethodBody '}'
+				  ;
+
+MethodModifier : MethodModifier
+			   | MethodModifier MethodModifier 	
+			   | PUBLIC | STATIC
+				;
+
+MethodHeader : Result MethodDeclarator
+			 ;
+
+Result : VOID | INT 
+	   | 
+	   ;
+
+MethodDeclarator : Identifier '(' FormalParameterList ')' Dims
+				 ;
+
+FormalParameterList : LastFormalParameterList
+				    ;
+
+LastFormalParameterList : VariableModifier UnannType Annotation VariableDeclaratorId 
+						;
+
+Annotation:;
+
+Dims : '(' ')'
+	 | '[' ']'
+	 | '{' '}'
+	 |
+	 ;
+				 
+MethodBody :  Block 
+		   ;
+
+Block: Blockstatements
+	 ;
+
+Blockstatements : Blockstatement
+				;
+
+Blockstatement : LocalVariableDeclarationStatement Statement
+			   ;
+ 
+LocalVariableDeclarationStatement : LocalVariableDeclaration ';'
+								  ;       
+							  
+LocalVariableDeclaration : VariableModifier UnannType VariableDeclarationList
+						 ;
+
+VariableModifier : /* empty */
+				 ;
+
+UnannType : UnannPrimitiveType
+		  | UnannReferenceType
+		  ; 
+
+UnannPrimitiveType : NumericType
+             | BOOLEAN
+             ;
+
+UnannReferenceType : UnannArrayType
+				   ;
+
+UnannArrayType : UnClassOrInterfaceType Dims UnannTypeVariable Dims
+			   ;
+
+UnClassOrInterfaceType : UnClassType
+					   ;
+
+UnClassType : STRING
+			;
+
+UnannTypeVariable : Identifier
+				  ;
+
+NumericType : IntegralType
+             | FloatingPointType
+             ;
+
+IntegralType
+            : BYTE
+            | SHORT
+            | INT
+            | LONG
+            | CHAR
+            ;
+
+FloatingPointType
+            : FLOAT
+			| DOUBLE
+            ;
+
+VariableDeclarationList : VariableDeclarator
+						;
+
+VariableDeclarator : VariableDeclaratorId 
+				   ;
+
+VariableDeclaratorId : Identifier | Dim_opt
+					 ;
+
+Identifier : IdentifierChars
+		   ;
+
+IdentifierChars : JavaLetter 
+			    | JavaLetterOrDigits 
+			    ;
+
+JavaLetter : IDENT
+		   ;
+
+JavaLetterOrDigits : ;
+
+Dim_opt : 
+		;
+
+
+//jeremy week4
+Statement : StatementWithoutTrailingSubstatement
           ;
 
-Type : INT
-     | BooleanLiteral
-     ;
+StatementWithoutTrailingSubstatement : ExpressionStatement
+                                     ;
 
-StatementList : StatementList Statement
-              | /* empty */
+ExpressionStatement : StatementExpression ';'
+                    ;
+
+StatementExpression : Assignment
+                    ;
+
+Assignment : LeftHandSide AssignmentOperator Expression
+           | /*empty*/
+           ;
+
+LeftHandSide : ExpressionName            
+             ;
+
+ExpressionName : IDENT
+               ;
+
+AssignmentOperator : '='
+                   ;
+
+Expression : AssignmentExpression
+           ;
+
+AssignmentExpression : ConditionalExpression
+                     ;
+
+ConditionalExpression : ConditionalOrExpression
+                      ;
+
+ConditionalOrExpression : ConditionalAndExpression
+                        ;
+
+ConditionalAndExpression : InclusiveOrExpression
+                         ;
+
+InclusiveOrExpression : ExclusiveOrExpression
+                      ;
+
+ExclusiveOrExpression : AndExpression
+                      ;
+
+AndExpression : EqualityExpression
               ;
 
-Expression : 
-           | IDENT
-		   | HexIntegerLiteral
-		   | DecimalIntegerLiteral
-		   | FloatingPointLiteral
-		   | StringLiteral
-		   | CharacterLiteral
-           | Expression '=' Expression
-           | Expression '+' Expression
-           | Expression '<' Expression
-		   | Expression '>' Expression
-		   | Expression OPERATOR Expression
-           ;
+EqualityExpression : RelationalExpression
+                   ;
+
+RelationalExpression : ShiftExpression
+                     ;
+
+ShiftExpression : AddictiveExpression
+                ;
+
+AddictiveExpression : MultiplicativeExpression
+                    ;
+
+MultiplicativeExpression : UnaryExpression
+                         ;
+
+UnaryExpression : UnaryExpressionNotPlusMinus
+                ;
+
+UnaryExpressionNotPlusMinus : PostfixExpression
+                            ;
+
+PostfixExpression : Primary
+                  ;
+
+Primary : PrimaryNoNewArray
+        ;
+
+PrimaryNoNewArray : Literal
+                  ;
+
+Literal : DecimalIntegerLiteral | HexIntegerLiteral
+        ;
+
+//jeremy week4
+
 
 %%
 

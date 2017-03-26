@@ -29,9 +29,8 @@ H:\IFN660\week4\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplica
 H:\IFN660\week4\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
 H:\IFN660\week4\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
 H:\IFN660\base project\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
-H:\IFN660\base project\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
-H:\IFN660\base project\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
 H:\IFN660\base project\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
 H:\IFN660\base project\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
 H:\IFN660\base project\ConsoleApplication1\bin\Debug\QUT.ShiftReduceParser.dll
-H:\IFN660\base project\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+H:\IFN660\base project\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+H:\IFN660\base project\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

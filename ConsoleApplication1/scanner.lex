@@ -90,6 +90,7 @@ return                       { yylval.keyword = yytext; return (int)Tokens.RETUR
 short                        { yylval.keyword = yytext; return (int)Tokens.SHORT; }
 static                       { yylval.keyword = yytext; return (int)Tokens.STATIC; }
 strictfp                     { yylval.keyword = yytext; return (int)Tokens.STRICTFP; }
+string                       { yylval.keyword = yytext; return (int)Tokens.STRING; }
 super                        { yylval.keyword = yytext; return (int)Tokens.SUPER; }
 switch                       { yylval.keyword = yytext; return (int)Tokens.SWITCH; }
 synchronized                 { yylval.keyword = yytext; return (int)Tokens.SYNCHRONIZED; }

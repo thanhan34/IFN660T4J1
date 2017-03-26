@@ -3,8 +3,8 @@
 //  GPLEX error listing for lex source file <scanner.lex>
 // ==========================================================================
 //  Version:  1.2.2
-//  Machine:  VDI-VL17-109
-//  DateTime: 24/03/2017 3:15:36 PM
+//  Machine:  VDI-VL17-114
+//  DateTime: 26/03/2017 6:28:38 PM
 //  UserName: n9548548
 // ==========================================================================
 
@@ -104,6 +104,7 @@ return                       { yylval.keyword = yytext; return (int)Tokens.RETUR
 short                        { yylval.keyword = yytext; return (int)Tokens.SHORT; }
 static                       { yylval.keyword = yytext; return (int)Tokens.STATIC; }
 strictfp                     { yylval.keyword = yytext; return (int)Tokens.STRICTFP; }
+string                       { yylval.keyword = yytext; return (int)Tokens.STRING; }
 super                        { yylval.keyword = yytext; return (int)Tokens.SUPER; }
 switch                       { yylval.keyword = yytext; return (int)Tokens.SWITCH; }
 synchronized                 { yylval.keyword = yytext; return (int)Tokens.SYNCHRONIZED; }
