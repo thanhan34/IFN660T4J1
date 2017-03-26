@@ -62,55 +62,6 @@
 %left '+'
 
 %%
-CompilationUnit 
-	: PackageDeclaration_opt ImportDeclarations TypeDeclarations
-	;
-
-PackageDeclaration_opt 
-	: PackageModifiers package Identifier {. Identifier} ; // fix this later
-	;
-
-ImportDeclarations 
-	: ImportDeclaration ImportDeclarations 
-	| /* empty */
-	;
-ImportDeclaration
-	: SingleTypeImportDeclaration
-	| TypeImportOnDemandDeclaration 
-	| SingleStaticImportDeclaration 
-	| StaticImportOnDemandDeclaration
-	;
-	
-TypeDeclarations 
-	: TypeDeclaration TypeDeclarations 
-	| /* empty */
-	;
-
-TypeDeclaration 
-	: ClassDeclaration
-	| InterfaceDeclaration
-	;
-
-ClassDeclaration
-	: NormalClassDeclaration
-	| EnumDeclaraiton
-	;
-
-NormalClassDeclaration
-	: ClassModifiers class Identifier TypeParameters_opt Superclass_opt Superinterfaces_opt ClassBody
-	;
-
-ClassModifiers 
-	: public
-	| protected
-	| private
-	| abstract
-	| static
-	| final
-	| strictfp
-	;
-
-
 
 Program : ComplitionUnit
 		;
