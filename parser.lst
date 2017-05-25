@@ -1,0 +1,257 @@
+
+// ==========================================================================
+//  GPPG error listing for yacc source file <parser.y - 26/03/2017 6:41:11 PM>
+// ==========================================================================
+//  Version:  1.5.2
+//  Machine:  LAPTOP-F16C0FBD
+//  DateTime: 26/03/2017 6:41:13 PM
+//  UserName: charl
+// ==========================================================================
+
+
+%namespace GPLexTutorial
+
+%union
+{
+    public int num;
+    public string name;
+    //frank week3
+    public string nil;
+    public string esfcasl;
+    public string separators;
+    public string operators;
+    //frank week3
+
+    //Charles week3
+    public string keyword;
+    public string comment;
+    //Charles week3
+}
+
+
+%token <name> IDENT
+%token <num>  NUMBER
+
+//Jessica week3
+%token HexIntegerLiteral
+//Jessica week3
+
+//thanhan
+%token StringLiteral
+//thanhan
+
+//Wendy week3
+%token DecimalIntegerLiteral
+//Wendy week3
+
+//frank week3  
+%token <nil> NIL
+//%token <esfcasl> ESFCASL 
+%token <separators> SEPARATOR
+%token <operators> OPERATOR
+//frank week3
+
+//bai week3
+%token CharacterLiteral
+%token SingleCharacter
+%token BooleanLiteral 
+//bai week3
+
+//Stacy week3
+%token FloatingPointLiteral
+//Stacy week3
+
+//Charles week3
+%token <keyword>  ABSTRACT ASSERT BOOLEAN BREAK BYTE CASE CATCH CHAR CLASS CONST CONTINUE DEFAULT DO DOUBLE
+%token <keyword>  ENUM ELSE EXTENDS FINAL FINALLY FLOAT FOR  GOTO  IF INT IMPLEMENTS IMPORT INSTANCEOF  INTERFACE LONG
+%token <keyword>  NATIVE NEW PACKAGE PRIVATE PROTECTED PUBLIC RETURN SHORT STATIC STRICTFP SUPER SWITCH SYNCHRONIZED
+%token <keyword> THIS THROW THROWS TRANSIENT TRY VOID VOLATILE WHILE
+%token <comment>  COMMENT
+//Charles week3
+
+%left '='
+%nonassoc '<'
+%left '+'
+
+%%
+// Warning: NonTerminal symbol "VarialbeModifier_opt" is unreachable
+// Warning: NonTerminal symbol "LastFormalParameter" is unreachable
+// Error: NonTerminal symbol "final" has no productions
+// Error: NonTerminal symbol "VariableDeclaratrId" has no productions
+// Warning: NonTerminal symbol "VariableDeclaratrId" is unreachable
+// Error: NonTerminal symbol "VarialbeModifier_opt" has no productions
+// Warning: NonTerminal symbol "final" is unreachable
+// Error: NonTerminal symbol "LastForamlParameter" has no productions
+// Error: NonTerminal symbol "main" has no productions
+// Warning: NonTerminal symbol "main" is unreachable
+// Warning: NonTerminal symbol "VariableModifier" is unreachable
+// Error: NonTerminal symbol "VariableDeclaratorId" has no productions
+// Error: NonTerminal symbol "VariableModifier_opt" has no productions
+// Warning: NonTerminal symbol "UnannClassOrInterfaceType" is unreachable
+// Error: NonTerminal symbol "UnannArryType" has no productions
+// Warning: NonTerminal symbol "UnannArryType" is unreachable
+// Error: Too many errors, abandoning
+// Warning: NonTerminal symbol "UnannTypeVariable" is unreachable
+// Error: NonTerminal symbol "UnannClassOrInterfaceType" has no productions
+// Warning: NonTerminal symbol "Unannreferencetype" is unreachable
+// Error: NonTerminal symbol "this" has no productions
+// Error: NonTerminal symbol "Identifier_opt" has no productions
+// Error: NonTerminal symbol "Annotaion_opt" has no productions
+// Error: NonTerminal symbol "boolean" has no productions
+// Error: NonTerminal symbol "numericType" has no productions
+// Error: NonTerminal symbol "UnannReferenceType" has no productions
+// Warning: Terminating final fixes the following size-2 NonTerminal set
+   // {VariableModifier, final}
+// Warning: Terminating VariableDeclaratorId fixes the following size-1 NonTerminal set
+   // {VariableDeclaratorId}
+// Warning: Terminating VariableModifier_opt fixes the following size-1 NonTerminal set
+   // {VariableModifier_opt}
+// Warning: Terminating Annotaion_opt fixes the following size-1 NonTerminal set
+   // {Annotaion_opt}
+// Warning: Terminating VariableDeclaratrId fixes the following size-1 NonTerminal set
+   // {VariableDeclaratrId}
+// Warning: Terminating VarialbeModifier_opt fixes the following size-1 NonTerminal set
+   // {VarialbeModifier_opt}
+// Warning: Terminating LastForamlParameter fixes the following size-2 NonTerminal set
+   // {FormalParentList, LastForamlParameter}
+// Warning: Terminating Dims fixes the following size-1 NonTerminal set
+   // {Dims}
+// Warning: Terminating void fixes the following size-2 NonTerminal set
+   // {Result, void}
+// Error: There are 36 non-terminating NonTerminal Symbols
+   //  {MethodHeader, $accept, Result, MethodDeclartor, void, UnannType, Identifier, 
+   //     FormalParentList, Dims, IdentifierChars, JavaLetter, JavaLetterOrDigits, 
+   //     Javaletter, main, ReceiverParameter, FormalParameters, 
+   //     LastForamlParameter, FormalParameter, VariableModifier_opt, 
+   //     VariableDeclaratorId, VariableModifier, final, LastFormalParameter, 
+   //     VarialbeModifier_opt, VariableDeclaratrId, Annotaion_opt, Identifier_opt, 
+   //     this, UnannReferenceType, UnannPrimitiveType, numericType, boolean, 
+   //     Unannreferencetype, UnannArryType, UnannClassOrInterfaceType, 
+   //     UnannTypeVariable}
+// Warning: Terminating main fixes the following size-2 NonTerminal set
+   // {Javaletter, main}
+// Warning: Terminating JavaLetterOrDigits fixes the following size-1 NonTerminal set
+   // {JavaLetterOrDigits}
+// Warning: Terminating JavaLetter fixes the following size-1 NonTerminal set
+   // {JavaLetter}
+// Error: NonTerminal symbol "Dims" has no productions
+// Error: NonTerminal symbol "void" has no productions
+// Warning: Terminating UnannTypeVariable fixes the following size-2 NonTerminal set
+   // {Unannreferencetype, UnannTypeVariable}
+// Warning: NonTerminal symbol "Javaletter" is unreachable
+// Error: NonTerminal symbol "JavaLetterOrDigits" has no productions
+// Error: NonTerminal symbol "JavaLetter" has no productions
+// Warning: Terminating UnannClassOrInterfaceType fixes the following size-2 NonTerminal set
+   // {Unannreferencetype, UnannClassOrInterfaceType}
+// Warning: Terminating UnannReferenceType fixes the following size-3 NonTerminal set
+   // {Result, UnannType, UnannReferenceType}
+// Warning: Terminating this fixes the following size-1 NonTerminal set
+   // {this}
+// Warning: Terminating Identifier_opt fixes the following size-1 NonTerminal set
+   // {Identifier_opt}
+// Warning: Terminating UnannArryType fixes the following size-2 NonTerminal set
+   // {Unannreferencetype, UnannArryType}
+// Warning: Terminating boolean fixes the following size-4 NonTerminal set
+   // {Result, UnannType, UnannPrimitiveType, boolean}
+// Warning: Terminating numericType fixes the following size-4 NonTerminal set
+   // {Result, UnannType, UnannPrimitiveType, numericType}
+// -----------------------------------------------------------------------------------------
+// Charles Yang week4
+MethodHeader 
+           : Result MethodDeclartor
+           ;
+Result
+           : void
+		   | UnannType
+	       ;
+MethodDeclartor 
+           : Identifier '(' FormalParentList ')' Dims
+		   ;
+Identifier
+           : IdentifierChars
+		   ;
+IdentifierChars
+           : JavaLetter JavaLetterOrDigits
+		   ;
+Javaletter
+           : main
+		   ;
+FormalParentList
+           : ReceiverParameter
+		   | FormalParameters 
+		   | LastForamlParameter                    // not in deviration tree 
+		   ;
+
+FormalParameters
+           : FormalParameter //'{' FormalParameter '}'  fix here
+		   | ReceiverParameter //'{', FormalParameter '}'  fix here
+		   ;
+FormalParameter
+           : VariableModifier_opt UnannType VariableDeclaratorId
+		   ;
+VariableModifier
+           : final
+		   ;
+LastFormalParameter
+           : VarialbeModifier_opt UnannType VariableDeclaratrId 
+		   | FormalParameter // not int tree
+		   ; 
+
+ReceiverParameter
+           : Annotaion_opt UnannType Identifier_opt this //[Identifier.]
+		   ;
+UnannType 
+           : UnannReferenceType
+		   | UnannPrimitiveType                    // not in tree
+		   ;
+UnannPrimitiveType                                 // not in tree
+           : numericType
+		   | boolean
+		   ;
+Unannreferencetype
+           : UnannArryType
+		   | UnannClassOrInterfaceType
+		   | UnannTypeVariable
+		   ;
+
+
+Program : Statement
+        ;
+
+Statement : IF '(' Expression ')' Statement ELSE Statement
+          | '{' StatementList '}'
+          | Expression ';'
+          | Type IDENT ';'
+          ;
+
+Type : INT
+     | BooleanLiteral
+     ;
+
+StatementList : StatementList Statement
+              | /* empty */
+              ;
+
+Expression : 
+           | IDENT
+           | HexIntegerLiteral
+           | DecimalIntegerLiteral
+           | FloatingPointLiteral
+           | StringLiteral
+           | CharacterLiteral
+           | Expression '=' Expression
+           | Expression '+' Expression
+           | Expression '<' Expression
+           | Expression '>' Expression
+           | Expression OPERATOR Expression
+           ;
+
+
+%%
+
+
+public Parser(Scanner scanner) : base(scanner)
+{
+}
+// ==========================================================================
+
