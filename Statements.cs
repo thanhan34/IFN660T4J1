@@ -101,7 +101,7 @@ namespace AST
     }*/
 
 
-    //wendy week 11
+    /* wendy
     public class Assignment : Statements
     {
         private LeftHandSide leftHandSide;
@@ -150,50 +150,57 @@ namespace AST
            
         }
     }
-    
+    wendy */
 
-    public class MethodBody : Statements
+    //wendy & frank 
+public class MethodBody : Statements
     {
-        private Block block1;
-        private Block block2;
-        public override bool ResolvedName(Scope scope)
-        {
-            return block1.ResolvedName(scope) && block2.ResolvedName(scope);
-        } 
+        private List<Statements>  statements;
 
-        public MethodBody(Block block1)
+        public override void ResolvedName(Scope scope)
         {
-            this.block1 = block1;
-            
-        }
-        public MethodBody(Block block1, Block block2)
-        {
-            this.block1 = block1;
-            this.block2 = block2;
+            foreach (var stmt in statements)
+                if (stmt is IDeclaration)
+                {
+                    IDeclaration decl = (IDeclaration)stmt;
+
+                    scope.AddSymbol(decl.get_name(), decl); 
+                }
+
+            foreach (var stmt in statements)
+                stmt.ResolvedName(scope);
+        }  
+
+        public MethodBody(List<Statements> statements)
+        {         
+            this.statements = statements;          
         }
         public override void dump(int indent)
         {
-            label(indent, "MethodBody:\n");
-            if (block1 != null && block2 != null)
+            label(indent,"Block");
+            foreach (var a in statements)
             {
-                block1.dump(indent + 1 );
-                block2.dump(indent + 1);
+                a.dump(indent);
             }
-            else if(block1 != null && block2 == null)
-            {
-                block1.dump(indent + 1);
-            }
-            else if (block1 == null && block2 != null)
-            {
-                block2.dump(indent + 1);
-            }
+
         }
         public override void TypeCheck()
         {
+            foreach (var a in statements)
+            {
+                a.TypeCheck(); 
+            }
+        }
+        public override void gecode(StreamWriter st)
+        {
+            foreach (var a in statements)
+            {
+                a.gecode(st);
+            }
             
         }
     }
-    //wendy week 11
+    //wendy & frank
  
     
 
